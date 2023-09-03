@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Reactivity</title>
+  </head>
+
+  <body>
+    <h1>Please Watch Logs in Console</h1>
+    <script type="module">
+      import { reactive } from './reactivity/reactive.js';
+      import { effect } from './reactivity/effect.js';
+      import { ref } from './reactivity/ref.js';
+
+      const state = reactive({
+        name: 'kkk',
+        age: 22,
+        like: {
+          item: 'fj',
+        },
+      });
+
+      const age = ref(0);
+
+      // effect(
+      //   () => {
+      //     console.log(`age: ${age.value}`);
+      //   }
+      // );
+      effect(() => {
+        // effect(() => console.log(state.age));
+        console.log(age.value);
+      });
+
+      setInterval(() => {
+        age.value++;
+      }, 2000);
+    </script>
+  </body>
+</html>
